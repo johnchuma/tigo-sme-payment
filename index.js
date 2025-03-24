@@ -11,12 +11,15 @@ app.use(bodyParser.text({ type: "text/plain" }));
 app.post("/initiate-payment", async (req, res) => {
   try {
     console.log("payment initiated");
+    console.log(process.env.TIGOPESA_PAYMENT_PUSH_URL);
+    console.log(req.body);
     const transaction = await axios.post(
       process.env.TIGOPESA_PAYMENT_PUSH_URL,
       req.body
     );
     res.status(200).send({ status: true, transaction });
   } catch (error) {
+    console.log("Failed to initiate");
     res
       .status(500)
       .send({ status: false, error, message: "Failed to initiate payment" });
