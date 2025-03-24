@@ -34,6 +34,15 @@ app.post("/callback", async (req, res) => {
       .send({ status: false, error, message: "Error processing callback" });
   }
 });
+app.get("/", (req, res) => {
+  try {
+    res.status(200).send("Tigo SME payment gateway");
+  } catch (error) {
+    res
+      .status(500)
+      .send({ status: false, error, message: "Internal server error" });
+  }
+});
 app.listen(process.env.APPLICATION_PORT, () => {
   console.log(`Server started at port ${process.env.APPLICATION_PORT}`);
 });
