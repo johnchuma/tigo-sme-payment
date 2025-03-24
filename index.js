@@ -36,7 +36,7 @@ app.post("/callback", async (req, res) => {
 });
 app.get("/", (req, res) => {
   try {
-    res.status(200).send("Tigo SME payment gateway");
+    res.status(200).send("Tigopesa SME payment gateway");
   } catch (error) {
     res
       .status(500)
