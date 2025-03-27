@@ -71,15 +71,14 @@ const requestForPaymentPush = async (req, res) => {
 const processCallback = async (req, res) => {
   let data = {};
   try {
-    const transaction = req.body;
-    const callback = await axios.post(process.env.SME_CALLBACK, transaction);
-    data = callback.data;
+    data = req.body;
     res.status(200).send({
       ResponseCode: "BILLER-18-0000-S",
       ResponseStatus: true,
       ResponseDescription: "Callback Successful",
       ReferenceID: data.ReferenceID,
     });
+    await axios.post(process.env.SME_CALLBACK, transaction);
   } catch (error) {
     res.status(200).send({
       ResponseCode: "BILLER-18-3020-E",
