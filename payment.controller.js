@@ -78,7 +78,11 @@ const processCallback = async (req, res) => {
       ResponseDescription: "Callback Successful",
       ReferenceID: data.ReferenceID,
     });
-    await axios.post(process.env.SME_CALLBACK, transaction);
+    data.ReferenceID = data.ReferenceID.split(
+      process.env.TIGOPESA_BILLER_CODE
+    )[1];
+    console.log(data);
+    await axios.post(process.env.SME_CALLBACK, data);
   } catch (error) {
     res.status(200).send({
       ResponseCode: "BILLER-18-3020-E",
