@@ -57,11 +57,7 @@ const requestForPaymentPush = async (req, res) => {
         httpsAgent: httpAgent,
       }
     );
-    res.status(200).send({
-      status: true,
-      message: "requested successfully",
-      data: pushRequestResponse.data,
-    });
+    res.status(200).send(pushRequestResponse.data);
   } catch (error) {
     console.log(error);
     res.status(400).send({
