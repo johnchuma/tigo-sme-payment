@@ -2,7 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { default: axios } = require("axios");
-const { requestForPaymentPush } = require("./payment.controller");
+const {
+  requestForPaymentPush,
+  processCallback,
+} = require("./payment.controller");
 const app = express();
 require("dotenv").config();
 app.use(express.json());
@@ -11,17 +14,7 @@ app.use(bodyParser.text({ type: "text/plain" }));
 
 app.post("/initiate-payment", requestForPaymentPush);
 
-app.post("/callback", async (req, res) => {
-  try {
-    const transaction = req.body;
-    const callback = await axios.post(process.env.SME_CALLBACK, transaction);
-    res.status(200).send(callback.data);
-  } catch (error) {
-    res
-      .status(400)
-      .send({ status: false, message: "Error processing callback" });
-  }
-});
+app.post("/callback", processCallback);
 
 app.get("/", (req, res) => {
   try {
