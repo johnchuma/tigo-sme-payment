@@ -37,7 +37,7 @@ const requestForPaymentPush = async (req, res) => {
       BillerMSISDN: process.env.TIGOPESA_BILLER_MSISDN,
       Amount: amount,
       Remarks: "Kwanza payment",
-      ReferenceID: referenceId,
+      ReferenceID: `${process.env.TIGOPESA_BILLER_CODE}referenceId`,
     };
 
     const headers = {
