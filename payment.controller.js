@@ -73,7 +73,7 @@ const processCallback = async (req, res) => {
   try {
     data = req.body;
     let newData = data;
-    newData.ReferenceID = data.ReferenceID.split(
+    newData.ReferenceID = newData.ReferenceID.split(
       process.env.TIGOPESA_BILLER_CODE
     )[1];
     await axios.post(process.env.SME_CALLBACK, newData);
