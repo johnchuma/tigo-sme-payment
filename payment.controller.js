@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const https = require("https");
 const httpAgent = new https.Agent({
   rejectUnauthorized: false,
@@ -61,8 +62,8 @@ const requestForPaymentPush = async (req, res) => {
       message: "requested successfully",
       data: pushRequestResponse.data,
     });
-    
   } catch (error) {
+    console.log(error);
     res.status(400).send({
       status: false,
       message: "Failed to initiate payment",
