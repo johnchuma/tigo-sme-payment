@@ -32,6 +32,7 @@ const requestForPaymentPush = async (req, res) => {
     console.log(req.body);
     const headerResponse = await createHeaders();
     const accessToken = headerResponse.data.access_token;
+    console.log(accessToken);
     const payload = {
       CustomerMSISDN: phone,
       BillerMSISDN: process.env.TIGOPESA_BILLER_MSISDN,
