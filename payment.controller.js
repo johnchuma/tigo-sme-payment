@@ -39,7 +39,7 @@ const requestForPaymentPush = async (req, res) => {
       Remarks: "Kwanza payment",
       ReferenceID: `${process.env.TIGOPESA_BILLER_CODE}${referenceId}`,
     };
-
+    console.log(payload);
     const headers = {
       Authorization: `bearer ${accessToken}`,
       "Content-Type": "application/json",
