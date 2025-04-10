@@ -57,6 +57,7 @@ const requestForPaymentPush = async (req, res) => {
         httpsAgent: httpAgent,
       }
     );
+    console.log(pushRequestResponse.data);
     res.status(200).send(pushRequestResponse.data);
   } catch (error) {
     console.log(error);
