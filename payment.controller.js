@@ -31,7 +31,9 @@ const requestForPaymentPush = async (req, res) => {
     const { phone, amount, referenceId } = req.body;
     console.log(req.body);
     const headerResponse = await createHeaders();
+    console.log(headerResponse);
     const accessToken = headerResponse.data.access_token;
+
     console.log(accessToken);
     const payload = {
       CustomerMSISDN: phone,
