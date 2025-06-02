@@ -82,7 +82,6 @@ const processCallback = async (req, res) => {
       ""
     );
     console.log(newData);
-    console.log(data);
     await axios.post(process.env.SME_CALLBACK, newData);
     res.status(200).send({
       ResponseCode: "BILLER-18-0000-S",
